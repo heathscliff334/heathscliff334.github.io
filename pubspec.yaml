@@ -54,9 +54,12 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Moonrising
+    - family: Nasalization
       fonts:
-        - asset: assets/fonts/Moonrising.ttf
+        - asset: assets/fonts/nasalization-rg.otf    
+    # - family: Moonrising
+    #   fonts:
+    #     - asset: assets/fonts/Moonrising.ttf
         # - asset: assets/fonts/Moonrising-Italic.ttf 
         #   style: italic
     # - family: Summery
