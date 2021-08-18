@@ -14,140 +14,189 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  bool isLandscape;
+  double dynHeight, dynWidth;
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    setState(() {
+      // To detect the orientation of the screen (browser) to asign a dynamic height and width
+      isLandscape = MediaQuery.of(context).orientation == Orientation.landscape;
+      print("Landscape Status : $isLandscape");
+      if (isLandscape == true) {
+        dynHeight = MediaQuery.of(context).size.height / 1.5;
+        dynWidth = MediaQuery.of(context).size.width / 1.7;
+      } else {
+        dynHeight = MediaQuery.of(context).size.height / 1.2;
+        dynWidth = MediaQuery.of(context).size.width / 1.3;
+      }
+    });
     return Container(
       // color: Colors.blue,
       child: Center(
         child: Container(
-          height: MediaQuery.of(context).size.height / 1.2,
-          width: MediaQuery.of(context).size.width / 1.3,
-          padding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
-          // color: Colors.blue,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            // color: Colors.grey[200],
-            gradient: LinearGradient(
-              colors: [
-                const Color(0xFF3366FF),
-                const Color(0xFFC300FF),
-              ],
-              begin: const FractionalOffset(0.0, 0.0),
-              end: const FractionalOffset(1.0, 0.0),
-              stops: [0.0, 1.0],
-              tileMode: TileMode.clamp,
-            ),
-          ),
-          child: Column(
+          height: dynHeight,
+          width: dynWidth,
+          // padding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+          // decoration: BoxDecoration(
+          //   borderRadius: BorderRadius.circular(20),
+          //   gradient: LinearGradient(
+          //     colors: [
+          //       const Color(0xFF3366FF),
+          //       const Color(0xFFC300FF),
+          //     ],
+          //     begin: const FractionalOffset(0.0, 0.0),
+          //     end: const FractionalOffset(1.0, 0.0),
+          //     stops: [0.0, 1.0],
+          //     tileMode: TileMode.clamp,
+          //   ),
+          // ),
+          child: Stack(
             children: [
+              // Background color
               Container(
-                width: 120,
                 decoration: BoxDecoration(
-                    border: Border.all(color: Colors.white, width: 3),
-                    borderRadius: BorderRadius.circular(100)),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(100),
-                  child: Image(
-                    image: NetworkImage(
-                        "https://media-exp1.licdn.com/dms/image/C5103AQHjVhRuL3yXgw/profile-displayphoto-shrink_200_200/0/1544581409377?e=1628121600&v=beta&t=uNMH8sY46Kr-I8DWJydT-HkWjdKNsMCxHA32vzMFiiU"),
-                    fit: BoxFit.cover,
-                    key: ValueKey(new Random().nextInt(100)),
+                  borderRadius: BorderRadius.circular(20),
+                  gradient: LinearGradient(
+                    colors: [
+                      const Color(0xFF3366FF),
+                      const Color(0xFFC300FF),
+                    ],
+                    begin: const FractionalOffset(0.0, 0.0),
+                    end: const FractionalOffset(1.0, 0.0),
+                    stops: [0.0, 1.0],
+                    tileMode: TileMode.clamp,
                   ),
                 ),
               ),
-              SizedBox(height: 10),
-              Flexible(
-                // Container(
-                // height: 30,
-                child: Text(
-                  "Kevin Laurence Hartono",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 24,
-                    color: Colors.white,
-                    fontFamily: 'Nasalization',
-                  ),
-                  // overflow: TextOverflow.ellipsis,
-                  // maxLines: 1,
-                ),
-              ),
+              // Container(
+              //   child: new Image.network(
+              //     "https://freepikpsd.com/media/2019/11/Waves-Border-Vector-PNG.png",
+              //     fit: BoxFit.cover,
+              //   ),
+              // ),
               Container(
-                height: 20,
-                child: Text(
-                  "Programmer. Full Stack. Back-End.",
-                  style: TextStyle(
-                      color: Colors.white70, fontWeight: FontWeight.w600),
-                ),
-              ),
-              SizedBox(height: 10),
-              ItemDividerWidget(marginBtm: 10),
-              Container(
-                height: MediaQuery.of(context).size.height / 9,
-                child: SingleChildScrollView(
-                  child: Text(
-                    "Experienced IT Staff with a demonstrated history of working in the retail industry. Skilled in Full Stack, Mobile Development (Flutter & Java), Web Development, and Computer Networking. Strong professional with a Bachelor's degree focused in Information Technology from Bunda Mulia University.",
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white,
+                padding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+                child: Column(
+                  children: [
+                    Container(
+                      width: 120,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.white, width: 3),
+                          borderRadius: BorderRadius.circular(100)),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(100),
+                        child: Image(
+                          image: NetworkImage(
+                              "https://media-exp1.licdn.com/dms/image/C5103AQHjVhRuL3yXgw/profile-displayphoto-shrink_200_200/0/1544581409377?e=1634169600&v=beta&t=2263Q7fDKZM_0dbwyLDtLz5Cbz8cpq_nqkm_Hvzne6I"),
+                          fit: BoxFit.cover,
+                          key: ValueKey(new Random().nextInt(100)),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-              ),
-              ItemDividerWidget(marginBtm: 10),
-              Container(
-                child: Text(
-                  "Interests: Programming, Travelling, Movie, Music",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              ItemDividerWidget(marginBtm: 10),
-              Row(
-                // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SosmedButton(
-                    url: "https://github.com/heathscliff334",
-                    imgUrl:
-                        "https://image.flaticon.com/icons/png/512/25/25231.png",
-                  ),
-                  SizedBox(width: 10),
-                  SosmedButton(
-                    url:
-                        "https://www.linkedin.com/in/kevin-laurence-hartono-6a61bb113/",
-                    imgUrl:
-                        "https://image.flaticon.com/icons/png/512/174/174857.png",
-                  ),
-                  SizedBox(width: 10),
-                  SosmedButton(
-                    url: "https://www.instagram.com/vinz_lrn/",
-                    imgUrl:
-                        "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/1024px-Instagram_icon.png",
-                  ),
-                  SizedBox(width: 10),
-                  Flexible(
-                    child: SosmedButton(
-                      url: "https://github.com/heathscliff334",
-                      imgUrl:
-                          "https://cdn.pixabay.com/photo/2016/01/26/17/15/gmail-1162901_640.png",
+                    SizedBox(height: 10),
+                    Flexible(
+                      // Container(
+                      // height: 30,
+                      child: Text(
+                        "Kevin Laurence Hartono",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 24,
+                          color: Colors.white,
+                          fontFamily: 'Nasalization',
+                        ),
+                        // overflow: TextOverflow.ellipsis,
+                        // maxLines: 1,
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              ItemDividerWidget(marginBtm: 15),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  NavButton(btnTitle: "Projects", navRoute: "projects"),
-                  SizedBox(width: 10),
-                  NavButton(btnTitle: "Skills", navRoute: "skills"),
-                  // NavButton(btnTitle: "Projects", navRoute: ""),
-                ],
+                    Container(
+                      height: 20,
+                      child: Text(
+                        "Programmer. Full Stack. Back-End.",
+                        style: TextStyle(
+                            color: Colors.white70, fontWeight: FontWeight.w600),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    ItemDividerWidget(marginBtm: 10),
+                    Container(
+                      // height: MediaQuery.of(context).size.height / 9,
+                      height: (isLandscape == true)
+                          ? MediaQuery.of(context).size.height / 9
+                          : MediaQuery.of(context).size.height / 5,
+                      child: SingleChildScrollView(
+                        child: Text(
+                          "Experienced IT Staff with a demonstrated history of working in the retail industry. Skilled in Full Stack, Mobile Development (Flutter & Java), Web Development, and Computer Networking. Strong professional with a Bachelor's degree focused in Information Technology from Bunda Mulia University.",
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                    ItemDividerWidget(marginBtm: 10),
+                    Container(
+                      child: Text(
+                        "Interests: Programming, Travelling, Movie, Music",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    ItemDividerWidget(marginBtm: 10),
+                    Row(
+                      // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SosmedButton(
+                          url: "https://github.com/heathscliff334",
+                          imgUrl:
+                              "https://image.flaticon.com/icons/png/512/25/25231.png",
+                        ),
+                        SizedBox(width: 10),
+                        SosmedButton(
+                          url:
+                              "https://www.linkedin.com/in/kevin-laurence-hartono-6a61bb113/",
+                          imgUrl:
+                              "https://image.flaticon.com/icons/png/512/174/174857.png",
+                        ),
+                        SizedBox(width: 10),
+                        SosmedButton(
+                          url: "https://www.instagram.com/vinz_lrn/",
+                          imgUrl:
+                              "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/1024px-Instagram_icon.png",
+                        ),
+                        SizedBox(width: 10),
+                        Flexible(
+                          child: SosmedButton(
+                            url: "https://github.com/heathscliff334",
+                            imgUrl:
+                                "https://cdn.pixabay.com/photo/2016/01/26/17/15/gmail-1162901_640.png",
+                          ),
+                        ),
+                      ],
+                    ),
+                    ItemDividerWidget(marginBtm: 15),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        NavButton(btnTitle: "Projects", navRoute: "projects"),
+                        SizedBox(width: 10),
+                        NavButton(btnTitle: "Skills", navRoute: "skills"),
+                        // NavButton(btnTitle: "Projects", navRoute: ""),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

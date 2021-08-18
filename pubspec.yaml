@@ -26,6 +26,7 @@ dependencies:
   cached_network_image: ^3.1.0
   cupertino_icons: ^1.0.0
   url_launcher: ^6.0.9
+  smooth_star_rating: ^1.1.1
 
 dev_dependencies:
   flutter_test:
@@ -56,10 +57,10 @@ flutter:
   fonts:
     - family: Nasalization
       fonts:
-        - asset: assets/fonts/nasalization-rg.otf    
-    # - family: Moonrising
-    #   fonts:
-    #     - asset: assets/fonts/Moonrising.ttf
+        - asset: assets/fonts/nasalization-rg.otf
+        # - family: Moonrising
+        #   fonts:
+        #     - asset: assets/fonts/Moonrising.ttf
         # - asset: assets/fonts/Moonrising-Italic.ttf 
         #   style: italic
     # - family: Summery
@@ -90,3 +91,4 @@ flutter:
     #       weight: 700
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
