@@ -80,7 +80,9 @@ class _HomePageState extends State<HomePage> {
               //   ),
               // ),
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+                // padding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+                padding:
+                    EdgeInsets.only(top: 20, left: 25, right: 25, bottom: 0),
                 child: Column(
                   children: [
                     Container(
@@ -186,14 +188,27 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                     ItemDividerWidget(marginBtm: 15),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        NavButton(btnTitle: "Projects", navRoute: "projects"),
-                        SizedBox(width: 10),
-                        NavButton(btnTitle: "Skills", navRoute: "skills"),
-                        // NavButton(btnTitle: "Projects", navRoute: ""),
-                      ],
+                    Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          NavButton(btnTitle: "Projects", navRoute: "projects"),
+                          SizedBox(width: 10),
+                          NavButton(btnTitle: "Skills", navRoute: "skills"),
+                          // NavButton(btnTitle: "Projects", navRoute: ""),
+                        ],
+                      ),
+                    ),
+                    Spacer(),
+                    Container(
+                      // color: Colors.red,
+                      width: dynWidth,
+                      height: 20,
+                      child: Center(
+                          child: Text(
+                        "Copyright. All right reserved. Powered by Flutter",
+                        style: TextStyle(color: Colors.white70),
+                      )),
                     ),
                   ],
                 ),
