@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
       isLandscape = MediaQuery.of(context).orientation == Orientation.landscape;
       print("Landscape Status : $isLandscape");
       if (isLandscape == true) {
-        dynHeight = MediaQuery.of(context).size.height / 1.5;
+        dynHeight = MediaQuery.of(context).size.height / 1.3;
         dynWidth = MediaQuery.of(context).size.width / 1.7;
       } else {
         dynHeight = MediaQuery.of(context).size.height / 1.2;
@@ -127,16 +127,16 @@ class _HomePageState extends State<HomePage> {
                     Container(
                       // height: MediaQuery.of(context).size.height / 9,
                       height: (isLandscape == true)
-                          ? MediaQuery.of(context).size.height / 9
-                          : MediaQuery.of(context).size.height / 5,
+                          ? dynHeight / 8
+                          : dynHeight / 4.5,
                       child: SingleChildScrollView(
                         child: Text(
                           "Experienced IT Staff with a demonstrated history of working in the retail industry. Skilled in Full Stack, Mobile Development (Flutter & Java), Web Development, and Computer Networking. Strong professional with a Bachelor's degree focused in Information Technology from Bunda Mulia University.",
                           textAlign: TextAlign.left,
                           style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            color: Colors.white,
-                          ),
+                              fontWeight: FontWeight.w500,
+                              color: Colors.white,
+                              fontSize: 16),
                         ),
                       ),
                     ),
@@ -281,8 +281,8 @@ class SosmedButton extends StatelessWidget {
           }
         },
         child: Container(
-          height: 50,
-          width: 50,
+          height: 35,
+          width: 35,
           padding: EdgeInsets.all(8),
           decoration: BoxDecoration(
               color: Colors.grey[200],

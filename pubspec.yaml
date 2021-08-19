@@ -21,12 +21,12 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
-  flutter:
-    sdk: flutter
   cached_network_image: ^3.1.0
   cupertino_icons: ^1.0.0
-  url_launcher: ^6.0.9
+  flutter:
+    sdk: flutter
   smooth_star_rating: ^1.1.1
+  url_launcher: ^6.0.9
 
 dev_dependencies:
   flutter_test:
@@ -91,4 +91,3 @@ flutter:
     #       weight: 700
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
-

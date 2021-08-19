@@ -81,13 +81,13 @@ class _SkillsPageState extends State<SkillsPage> {
                         ),
                       ),
                       ItemDividerWidget(marginBtm: 10),
-                      Expanded(
+                      Container(
+                        width: (isLandscape == true) ? dynWidth / 2 : dynWidth,
                         child: ListView.builder(
                           shrinkWrap: true,
                           itemCount: _listSkills.length,
                           itemBuilder: (context, i) => Container(
-                            width: 250,
-                            color: Colors.red,
+                            // color: Colors.red,
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
@@ -101,7 +101,8 @@ class _SkillsPageState extends State<SkillsPage> {
                                 ),
                                 SizedBox(height: 20),
                                 // SizedBox(width: 50),
-                                // Spacer(),
+                                Spacer(),
+
                                 SmoothStarRating(
                                   rating: _listStars[i],
                                   isReadOnly: true,
