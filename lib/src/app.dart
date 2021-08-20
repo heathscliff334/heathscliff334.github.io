@@ -12,6 +12,7 @@ class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: "CV & Portfolio",
       home: Scaffold(
         body: HomePage(),
       ),

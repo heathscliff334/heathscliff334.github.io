@@ -39,6 +39,9 @@ class _SkillsPageState extends State<SkillsPage> {
   ];
   List<double> _listStars = [3.5, 3, 4, 3.5, 4, 4, 4.5];
   List<double> _listStars2 = [2, 4, 4, 3, 3, 3.5, 3.5];
+  List<String> _tempSkills = [];
+  List<double> _tempStarts = [];
+  @override
   void initState() {
     super.initState();
   }
@@ -46,20 +49,21 @@ class _SkillsPageState extends State<SkillsPage> {
   @override
   Widget build(BuildContext context) {
     setState(() {
+      _tempSkills = _listSkills + _listSkills2;
+      _tempStarts = _listStars + _listStars2;
       // To detect the orientation of the screen (browser) to asign a dynamic height and width
       isLandscape = MediaQuery.of(context).orientation == Orientation.landscape;
       print("Landscape Status : $isLandscape");
       if (isLandscape == true) {
-        dynHeight = MediaQuery.of(context).size.height / 1.5;
+        dynHeight = MediaQuery.of(context).size.height / 1.6;
         dynWidth = MediaQuery.of(context).size.width / 1.7;
       } else {
-        dynHeight = MediaQuery.of(context).size.height / 1.2;
-        dynWidth = MediaQuery.of(context).size.width / 1.3;
+        dynHeight = MediaQuery.of(context).size.height / 1.1;
+        dynWidth = MediaQuery.of(context).size.width / 1.1;
       }
     });
     return Scaffold(
       body: Container(
-        // child: Center(child: Text("Skills Page")),
         child: Center(
           child: Container(
             height: dynHeight,
@@ -81,172 +85,266 @@ class _SkillsPageState extends State<SkillsPage> {
                     ),
                   ),
                 ),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
-                  child: Column(
-                    // mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Skills",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 24,
-                          color: Colors.white,
-                          fontFamily: 'Nasalization',
-                        ),
-                      ),
-                      ItemDividerWidget(marginBtm: 10),
-                      Row(
-                        children: [
-                          Expanded(
-                            // width: (isLandscape == true) ? dynWidth / 2 : dynWidth,
-                            child: ListView.builder(
-                              shrinkWrap: true,
-                              itemCount: _listSkills.length,
-                              itemBuilder: (context, i) => Container(
-                                // color: Colors.red,
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text(
-                                      "${_listSkills[i]}",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 16,
-                                        color: Colors.white,
+                SingleChildScrollView(
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        (isLandscape == true)
+                            ? Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Skills",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 24,
+                                      color: Colors.white,
+                                      fontFamily: 'Nasalization',
+                                    ),
+                                  ),
+                                  ItemDividerWidget(marginBtm: 10),
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        // width: (isLandscape == true) ? dynWidth / 2 : dynWidth,
+                                        child: ListView.builder(
+                                          shrinkWrap: true,
+                                          itemCount: _listSkills.length,
+                                          itemBuilder: (context, i) =>
+                                              Container(
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Text(
+                                                  "${_listSkills[i]}",
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 16,
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                                SizedBox(height: 20),
+                                                Spacer(),
+                                                SmoothStarRating(
+                                                  rating: _listStars[i],
+                                                  isReadOnly: true,
+                                                  size: 25,
+                                                  filledIconData: Icons.star,
+                                                  halfFilledIconData:
+                                                      Icons.star_half,
+                                                  defaultIconData:
+                                                      Icons.star_border,
+                                                  starCount: 5,
+                                                  color: Colors.yellow,
+                                                  borderColor: Colors.red[200],
+                                                  allowHalfRating: true,
+                                                  spacing: 2.0,
+                                                  // onRated: (value) {
+                                                  //   print("rating value -> $value");
+                                                  //   // print("rating value dd -> ${value.truncate()}");
+                                                  // },
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(width: 150),
+                                      Expanded(
+                                        child: ListView.builder(
+                                          shrinkWrap: true,
+                                          itemCount: _listSkills2.length,
+                                          itemBuilder: (context, i) =>
+                                              Container(
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Text(
+                                                  "${_listSkills2[i]}",
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 16,
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                                SizedBox(height: 20),
+                                                Spacer(),
+                                                SmoothStarRating(
+                                                  rating: _listStars2[i],
+                                                  isReadOnly: true,
+                                                  size: 25,
+                                                  filledIconData: Icons.star,
+                                                  halfFilledIconData:
+                                                      Icons.star_half,
+                                                  defaultIconData:
+                                                      Icons.star_border,
+                                                  starCount: 5,
+                                                  color: Colors.yellow,
+                                                  borderColor: Colors.red[200],
+                                                  allowHalfRating: true,
+                                                  spacing: 2.0,
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 20),
+                                  Text(
+                                    "Languages",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 24,
+                                      color: Colors.white,
+                                      fontFamily: 'Nasalization',
+                                    ),
+                                  ),
+                                  ItemDividerWidget(marginBtm: 10),
+                                  Container(
+                                      height: 50,
+                                      child: ListView.builder(
+                                        shrinkWrap: true,
+                                        scrollDirection: Axis.horizontal,
+                                        itemCount: _listLanguages.length,
+                                        itemBuilder: (context, i) => Container(
+                                          width: dynWidth / 3,
+                                          child: Center(
+                                            child: Row(
+                                              children: [
+                                                Text(
+                                                  "${_listLanguages[i]}",
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 16,
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                                SizedBox(width: 10),
+                                                SmoothStarRating(
+                                                  rating:
+                                                      _listStarsLanguages[i],
+                                                  isReadOnly: true,
+                                                  size: 25,
+                                                  filledIconData: Icons.star,
+                                                  halfFilledIconData:
+                                                      Icons.star_half,
+                                                  defaultIconData:
+                                                      Icons.star_border,
+                                                  starCount: 5,
+                                                  color: Colors.yellow,
+                                                  borderColor: Colors.red[200],
+                                                  allowHalfRating: true,
+                                                  spacing: 2.0,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      )),
+                                ],
+                              )
+                            : Column(
+                                children: [
+                                  Text(
+                                    "Skills",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 24,
+                                      color: Colors.white,
+                                      fontFamily: 'Nasalization',
+                                    ),
+                                  ),
+                                  ItemDividerWidget(marginBtm: 10),
+                                  ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: _tempSkills.length,
+                                    itemBuilder: (context, i) => Container(
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Text(
+                                            "${_tempSkills[i]}",
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 16,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                          SizedBox(height: 20),
+                                          Spacer(),
+                                          SmoothStarRating(
+                                            rating: _tempStarts[i],
+                                            isReadOnly: true,
+                                            size: 25,
+                                            filledIconData: Icons.star,
+                                            halfFilledIconData: Icons.star_half,
+                                            defaultIconData: Icons.star_border,
+                                            starCount: 5,
+                                            color: Colors.yellow,
+                                            borderColor: Colors.red[200],
+                                            allowHalfRating: true,
+                                            spacing: 2.0,
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                    SizedBox(height: 20),
-                                    Spacer(),
-                                    SmoothStarRating(
-                                      rating: _listStars[i],
-                                      isReadOnly: true,
-                                      size: 25,
-                                      filledIconData: Icons.star,
-                                      halfFilledIconData: Icons.star_half,
-                                      defaultIconData: Icons.star_border,
-                                      starCount: 5,
-                                      color: Colors.yellow,
-                                      borderColor: Colors.red[200],
-                                      allowHalfRating: true,
-                                      spacing: 2.0,
-                                      // onRated: (value) {
-                                      //   print("rating value -> $value");
-                                      //   // print("rating value dd -> ${value.truncate()}");
-                                      // },
+                                  ),
+                                  SizedBox(height: 15),
+                                  Text(
+                                    "Languages",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 24,
+                                      color: Colors.white,
+                                      fontFamily: 'Nasalization',
                                     ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 150),
-                          Expanded(
-                            // width: (isLandscape == true) ? dynWidth / 2 : dynWidth,
-                            child: ListView.builder(
-                              shrinkWrap: true,
-                              itemCount: _listSkills2.length,
-                              itemBuilder: (context, i) => Container(
-                                // color: Colors.red,
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text(
-                                      "${_listSkills2[i]}",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 16,
-                                        color: Colors.white,
+                                  ),
+                                  ItemDividerWidget(marginBtm: 10),
+                                  ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: _listLanguages.length,
+                                    itemBuilder: (context, i) => Container(
+                                      width: dynWidth / 3,
+                                      child: Center(
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              "${_listLanguages[i]}",
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 16,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                            Spacer(),
+                                            SmoothStarRating(
+                                              rating: _listStarsLanguages[i],
+                                              isReadOnly: true,
+                                              size: 25,
+                                              filledIconData: Icons.star,
+                                              halfFilledIconData:
+                                                  Icons.star_half,
+                                              defaultIconData:
+                                                  Icons.star_border,
+                                              starCount: 5,
+                                              color: Colors.yellow,
+                                              borderColor: Colors.red[200],
+                                              allowHalfRating: true,
+                                              spacing: 2.0,
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
-                                    SizedBox(height: 20),
-                                    Spacer(),
-                                    SmoothStarRating(
-                                      rating: _listStars2[i],
-                                      isReadOnly: true,
-                                      size: 25,
-                                      filledIconData: Icons.star,
-                                      halfFilledIconData: Icons.star_half,
-                                      defaultIconData: Icons.star_border,
-                                      starCount: 5,
-                                      color: Colors.yellow,
-                                      borderColor: Colors.red[200],
-                                      allowHalfRating: true,
-                                      spacing: 2.0,
-                                      // onRated: (value) {
-                                      //   print("rating value -> $value");
-                                      //   // print("rating value dd -> ${value.truncate()}");
-                                      // },
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 20),
-                      Text(
-                        "Languages",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 24,
-                          color: Colors.white,
-                          fontFamily: 'Nasalization',
-                        ),
-                      ),
-                      ItemDividerWidget(marginBtm: 10),
-                      Container(
-                          height: 50,
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            scrollDirection: Axis.horizontal,
-                            itemCount: _listLanguages.length,
-                            itemBuilder: (context, i) => Container(
-                              width: dynWidth / 3,
-                              // color: Colors.red,
-                              child: Center(
-                                child: Row(
-                                  // mainAxisSize: MainAxisSize.min,
-                                  // mainAxisAlignment:
-                                  //     MainAxisAlignment.spaceEvenly,
-                                  // crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "${_listLanguages[i]}",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 16,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                    SizedBox(width: 10),
-                                    // Spacer(),
-                                    SmoothStarRating(
-                                      rating: _listStarsLanguages[i],
-                                      isReadOnly: true,
-                                      size: 25,
-                                      filledIconData: Icons.star,
-                                      halfFilledIconData: Icons.star_half,
-                                      defaultIconData: Icons.star_border,
-                                      starCount: 5,
-                                      color: Colors.yellow,
-                                      borderColor: Colors.red[200],
-                                      allowHalfRating: true,
-                                      spacing: 2.0,
-                                      // onRated: (value) {
-                                      //   print("rating value -> $value");
-                                      //   // print("rating value dd -> ${value.truncate()}");
-                                      // },
-                                    ),
-                                    // SizedBox(width: 20),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          )),
-                    ],
+                      ],
+                    ),
                   ),
                 )
               ],

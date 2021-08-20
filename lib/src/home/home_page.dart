@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_web/src/projects/projects_page.dart';
 import 'package:flutter_web/src/skills/skills_page.dart';
 import 'package:flutter_web/src/widgets/item_divider_widget.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
@@ -31,8 +32,8 @@ class _HomePageState extends State<HomePage> {
         dynHeight = MediaQuery.of(context).size.height / 1.3;
         dynWidth = MediaQuery.of(context).size.width / 1.7;
       } else {
-        dynHeight = MediaQuery.of(context).size.height / 1.2;
-        dynWidth = MediaQuery.of(context).size.width / 1.3;
+        dynHeight = MediaQuery.of(context).size.height / 1.1;
+        dynWidth = MediaQuery.of(context).size.width / 1.1;
       }
     });
     return Container(
@@ -83,29 +84,48 @@ class _HomePageState extends State<HomePage> {
                 // padding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
                 padding:
                     EdgeInsets.only(top: 20, left: 25, right: 25, bottom: 0),
-                child: Column(
+                child: ListView(
+                  shrinkWrap: true,
                   children: [
-                    Container(
-                      width: 120,
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.white, width: 3),
-                          borderRadius: BorderRadius.circular(100)),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(100),
-                        child: Image(
-                          image: NetworkImage(
-                              "https://media-exp1.licdn.com/dms/image/C5103AQHjVhRuL3yXgw/profile-displayphoto-shrink_200_200/0/1544581409377?e=1634169600&v=beta&t=2263Q7fDKZM_0dbwyLDtLz5Cbz8cpq_nqkm_Hvzne6I"),
-                          fit: BoxFit.cover,
-                          key: ValueKey(new Random().nextInt(100)),
-                        ),
+                    Center(
+                      child: Stack(
+                        children: [
+                          Shimmer.fromColors(
+                            baseColor: Colors.white,
+                            highlightColor: Color(0xFFC300FF),
+                            child: Container(
+                              width: 120,
+                              height: 120,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  border:
+                                      Border.all(color: Colors.white, width: 3),
+                                  borderRadius: BorderRadius.circular(100)),
+                            ),
+                          ),
+                          Container(
+                            width: 120,
+                            height: 120,
+                            padding: EdgeInsets.all(3),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(100),
+                              child: Image(
+                                image: NetworkImage(
+                                    "https://media-exp1.licdn.com/dms/image/C5103AQHjVhRuL3yXgw/profile-displayphoto-shrink_200_200/0/1544581409377?e=1634169600&v=beta&t=2263Q7fDKZM_0dbwyLDtLz5Cbz8cpq_nqkm_Hvzne6I"),
+                                fit: BoxFit.cover,
+                                key: ValueKey(new Random().nextInt(100)),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     SizedBox(height: 10),
-                    Flexible(
+                    Container(
                       // Container(
                       // height: 30,
                       child: Text(
-                        "Kevin Laurence Hartono",
+                        "Kevin Laurence Hartono", textAlign: TextAlign.center,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 24,
@@ -120,6 +140,7 @@ class _HomePageState extends State<HomePage> {
                       height: 20,
                       child: Text(
                         "Programmer. Full Stack. Back-End.",
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.white70, fontWeight: FontWeight.w600),
                       ),
@@ -178,38 +199,36 @@ class _HomePageState extends State<HomePage> {
                               "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/1024px-Instagram_icon.png",
                         ),
                         SizedBox(width: 10),
-                        Flexible(
-                          child: SosmedButton(
-                            url: "https://github.com/heathscliff334",
-                            imgUrl:
-                                "https://cdn.pixabay.com/photo/2016/01/26/17/15/gmail-1162901_640.png",
-                          ),
+                        SosmedButton(
+                          url: "https://github.com/heathscliff334",
+                          imgUrl:
+                              "https://cdn.pixabay.com/photo/2016/01/26/17/15/gmail-1162901_640.png",
                         ),
                       ],
                     ),
                     ItemDividerWidget(marginBtm: 15),
-                    Expanded(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          NavButton(btnTitle: "Projects", navRoute: "projects"),
-                          SizedBox(width: 10),
-                          NavButton(btnTitle: "Skills", navRoute: "skills"),
-                          // NavButton(btnTitle: "Projects", navRoute: ""),
-                        ],
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        NavButton(btnTitle: "Projects", navRoute: "projects"),
+                        SizedBox(width: 10),
+                        NavButton(btnTitle: "Skills", navRoute: "skills"),
+                        // NavButton(btnTitle: "Projects", navRoute: ""),
+                      ],
                     ),
-                    Spacer(),
+                    // Spacer(),
+                    SizedBox(height: 25),
                     Container(
+                      margin: EdgeInsets.only(bottom: 15),
                       // color: Colors.red,
                       width: dynWidth,
                       height: 20,
                       child: Center(
                           child: Text(
-                        "Copyright. All right reserved. Powered by Flutter",
+                        "2021 \u00a9 Kevin Laurence. Powered by Flutter",
                         style: TextStyle(color: Colors.white70),
                       )),
-                    ),
+                    )
                   ],
                 ),
               ),
