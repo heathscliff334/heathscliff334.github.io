@@ -28,6 +28,7 @@ dependencies:
   smooth_star_rating: ^1.1.1
   url_launcher: ^6.0.9
   shimmer: 1.1.2
+  liquid_pull_to_refresh: ^3.0.0
 
 dev_dependencies:
   flutter_test:
