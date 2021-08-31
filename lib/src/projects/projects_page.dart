@@ -64,7 +64,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
       isLandscape = MediaQuery.of(context).orientation == Orientation.landscape;
       print("Landscape Status : $isLandscape");
       if (isLandscape == true) {
-        dynHeight = MediaQuery.of(context).size.height / 1.6;
+        dynHeight = MediaQuery.of(context).size.height / 1.3;
         dynWidth = MediaQuery.of(context).size.width / 1.7;
       } else {
         dynHeight = MediaQuery.of(context).size.height / 1.1;
@@ -256,7 +256,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
                                                               style: TextStyle(
                                                                   color: Colors
                                                                       .white,
-                                                                  fontSize: 24,
+                                                                  fontSize: 22,
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .bold),
@@ -266,6 +266,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
                                                               maxLines: 1,
                                                             )),
                                                       ),
+                                                      SizedBox(height: 5),
                                                       Expanded(
                                                         flex: 8,
                                                         child: Container(
